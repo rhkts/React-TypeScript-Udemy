@@ -11,6 +11,7 @@ function App() {
       <Practice1 />
       <Practice2 />
       <Practice3 />
+      <Practice4 />
     </>
   );
 }
