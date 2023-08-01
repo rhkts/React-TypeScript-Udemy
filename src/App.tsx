@@ -5,6 +5,7 @@ import { Practice1 } from "./practices/Practice1";
 import { Practice2 } from "./practices/Practice2";
 import { Practice3 } from "./practices/Practice3";
 import { Practice4 } from "./practices/Practice4";
+import { Text } from "./Text";
 import { Todo } from "./Todo";
 import { TodoType } from "./types/todo";
 function App() {
@@ -19,6 +20,7 @@ function App() {
   };
   return (
     <>
+      <Text color="red" fontSize="18px" />
       <button onClick={onClickFetchData}>データ取得</button>
       {todos.map((todo) => (
         <Todo
