@@ -8,6 +8,13 @@ import { Practice4 } from "./practices/Practice4";
 import { Text } from "./Text";
 import { Todo } from "./Todo";
 import { TodoType } from "./types/todo";
+import { User } from "./types/user";
+import { UserProfile } from "./UserProfile";
+
+const user: User = {
+  name: "namae",
+  hobbies: ["映画", "散歩"],
+};
 function App() {
   const [todos, setTodos] = useState<Array<TodoType>>([]);
 
@@ -21,6 +28,7 @@ function App() {
   return (
     <>
       <Text color="red" fontSize="18px" />
+      <UserProfile user={user} />
       <button onClick={onClickFetchData}>データ取得</button>
       {todos.map((todo) => (
         <Todo
