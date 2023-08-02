@@ -8,10 +8,9 @@ import { Practice3 } from "./practices/Practice3";
 import { Practice4 } from "./practices/Practice4";
 import { Text } from "./Text";
 import { Todo } from "./Todo";
-import { UserApi } from "./types/api/userApi";
 import { TodoType } from "./types/todo";
 import { User } from "./types/user";
-import { UserProfile } from "./types/userProfile";
+import { useAllUsers } from "./hooks/useAllUsers";
 
 const user: User = {
   name: "namae",
@@ -20,32 +19,10 @@ const user: User = {
 
 function App() {
   const [todos, setTodos] = useState<Array<TodoType>>([]);
-  const [userProfiles, setUserProfiles] = useState<Array<UserProfile>>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
 
-  const onClickFetchUser = () => {
-    setLoading(true);
-    setError(false);
+  const { getUsers, userProfiles, loading, error } = useAllUsers();
 
-    axios
-      .get<Array<UserApi>>("https://jsonplaceholder.typicode.com/users")
-      .then((res) => {
-        const data = res.data.map((user) => ({
-          id: user.id,
-          name: `${user.name}(${user.username})`,
-          email: user.email,
-          address: `${user.address.city}${user.address.suite}${user.address.city}`,
-        }));
-        setUserProfiles(data);
-      })
-      .catch(() => {
-        setError(true);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
+  const onClickFetchUser = () => getUsers();
 
   const onClickFetchData = () => {
     axios
